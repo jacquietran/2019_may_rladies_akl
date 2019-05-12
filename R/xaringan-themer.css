@@ -17,7 +17,7 @@
  *
  * ------------------------------------------------------- */
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,400i,400b);
-@import url(https://fonts.googleapis.com/css?family=Walter+Turncoat);
+@import url(https://fonts.googleapis.com/css?family=Fredericka+the+Great);
 @import url(https://fonts.googleapis.com/css?family=Droid+Mono);
 
 
@@ -27,7 +27,7 @@ body {
   color: #071118;
 }
 h1, h2, h3 {
-  font-family: Walter Turncoat;
+  font-family: Fredericka the Great;
   font-weight: normal;
   color: #0A1923;
 }

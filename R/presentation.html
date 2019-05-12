@@ -178,25 +178,116 @@ Image credit: **Deakin University**
 ]
 
 ---
+class: center
 
-## Today in elite sport...
-
---
-
-It is faster and easier to collect data than it has ever been.
-
---
+## Sports analytics today
 
 We have more data than we know what to do with!
 
+&lt;center&gt;
+&lt;img src="https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/lemon.gif" width="600px" /&gt;
+&lt;/center&gt;
+
+---
+class: center
+
+## Sports analytics today
+
+We need to (learn to) work accurately and efficiently with high-resolution data.
+
+&lt;center&gt;
+&lt;img src="https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/lazy_homer.gif" width="500px" /&gt;
+&lt;/center&gt;
+
+---
+class: inverse, center, middle
+
+# Uses of R in sports analytics
+
+## Example 1: Mining text data
+
+---
+class: center
+
+&lt;img src="https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/hpsnz_logo.jpg" width="350px" /&gt;
+
+## Knowledge Edge for Tokyo
+
 --
 
-Sport scientists are now learning how to work with large amounts of data:
+Cross-sport, cross-time evidence
 
-- Efficiency
-- Comprehensiveness
-- Meaning
-- Clarity
+--
+
+Surveys and interviews
+
+--
+
+Repeated data collection
+
+---
+class: inverse, center, middle
+
+# 🤐
+
+---
+class: inverse, center, bottom
+
+&lt;img src="https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/sportswomans_library.jpg" width="300px" /&gt;
+
+## The Sportswoman's Library, Vol. II (1898)
+
+---
+
+.pull-left[
+![](https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/illus-310.jpg)
+]
+
+.pull-right[
+*"For any form of outdoor exercise, the two chief requisites of costume are warmth and lightness. A thin flannel shirt is more useful than anything, worn with a short light skirt."*
+]
+
+.footnote[
+Image credit: [Project Gutenberg](https://www.gutenberg.org/files/47243/47243-h/47243-h.htm#LAWN-TENNIS)
+]
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/sportswomans_lib_frequency.png)
+background-size: 85% 80%
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/sportswomans_lib_bigrams.png)
+background-size: 85% 80%
+
+---
+
+## R packages used
+
+Project organisation: `here`
+
+Retrieving text data: `gutenbergr`
+
+Tidying text data: `tidytext`, `dplyr`, `stringr`, `tidyr`
+
+Creating graph data (for network analysis): `igraph`
+
+Plotting: `ggplot2`, `ggraph`
+
+---
+class: inverse, center, middle
+
+# Uses of R in sports analytics
+
+## Example 2: Network analysis in Australian football
+
+---
+class: inverse, center, middle
+
+# Uses of R in sports analytics
+
+## Example 3: Scoring dynamics in Australian football
+
+---
 
 ---
 
@@ -372,7 +463,7 @@ To answer this question, we will use R to create this **data table**...
 
 # Import the data into your R session
 winter &lt;- read_csv(
-  here("winter.csv"), col_names = TRUE, col_types = NULL)
+  here("data/winter.csv"), col_names = TRUE, col_types = NULL)
 ```
 
 ---
@@ -1021,9 +1112,8 @@ datatable(gold_medal_totals_wide,
 
 ## Display gold medal totals
 
-&lt;div id="htmlwidget-9a114b4ce1e8eaf3d510" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9a114b4ce1e8eaf3d510">{"x":{"filter":"none","data":[[1998,2002,2006,2010,2014],["Nagano","Salt Lake City","Turin","Vancouver","Sochi"],[6,8,7,15,10],[10,12,2,9,12],[0,0,7,5,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Year<\/th>\n      <th>City<\/th>\n      <th>CAN<\/th>\n      <th>NOR<\/th>\n      <th>SWE<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-right","targets":[0,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><
----
+&lt;!iv id="htmlwidget-624e6c2272990d332854" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-624e6c2272990d332854">{"x":{"filter":"none","data":[[1998,2002,2006,2010,2014],["Nagano","Salt Lake City","Turin","Vancouver","Sochi"],[6,8,7,15,10],[10,12,2,9,12],[0,0,7,5,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Year<\/th>\n      <th>City<\/th>\n      <th>CAN<\/th>\n      <th>NOR<\/th>\n      <th>SWE<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-right","targets":[0,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!---
 
 ## Plot the data
 

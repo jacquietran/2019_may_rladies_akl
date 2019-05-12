@@ -28,7 +28,7 @@ library(xaringanthemer)
 
 mono_light(
   base_color = ghibli_palette("YesterdayDark")[2],
-  header_font_google = google_font("Walter Turncoat"),
+  header_font_google = google_font("Fredericka the Great"),
   header_h1_font_size = "65px",
   header_h2_font_size = "50px",
   header_h3_font_size = "40px",
@@ -195,30 +195,116 @@ Image credit: **Deakin University**
 ]
 
 ---
+class: center
 
-## Today in elite sport...
-
---
-
-It is faster and easier to collect data than it has ever been.
-
---
+## Sports analytics today
 
 We have more data than we know what to do with!
 
---
+<center>
+<img src="https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/lemon.gif" width="600px" />
+</center>
 
-Sport scientists are now learning how to work with large amounts of data:
+---
+class: center
 
-- Efficiency
-- Comprehensiveness
-- Meaning
-- Clarity
+## Sports analytics today
+
+We need to (learn to) work accurately and efficiently with high-resolution data.
+
+<center>
+<img src="https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/lazy_homer.gif" width="500px" />
+</center>
 
 ---
 class: inverse, center, middle
 
 # Uses of R in sports analytics
+
+## Example 1: Mining text data
+
+---
+class: center
+
+<img src="https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/hpsnz_logo.jpg" width="350px" />
+
+## Knowledge Edge for Tokyo
+
+--
+
+Cross-sport, cross-time evidence
+
+--
+
+Surveys and interviews
+
+--
+
+Repeated data collection
+
+---
+class: inverse, center, middle
+
+# `r emo::ji("zipper_mouth_face")`
+
+---
+class: inverse, center, bottom
+
+<img src="https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/sportswomans_library.jpg" width="300px" />
+
+## The Sportswoman's Library, Vol. II (1898)
+
+---
+
+.pull-left[
+![](https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/illus-310.jpg)
+]
+
+.pull-right[
+*"For any form of outdoor exercise, the two chief requisites of costume are warmth and lightness. A thin flannel shirt is more useful than anything, worn with a short light skirt."*
+]
+
+.footnote[
+Image credit: [Project Gutenberg](https://www.gutenberg.org/files/47243/47243-h/47243-h.htm#LAWN-TENNIS)
+]
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/sportswomans_lib_frequency.png)
+background-size: 85% 80%
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/sportswomans_lib_bigrams.png)
+background-size: 85% 80%
+
+---
+
+## R packages used
+
+Project organisation: `here`
+
+Retrieving text data: `gutenbergr`
+
+Tidying text data: `tidytext`, `dplyr`, `stringr`, `tidyr`
+
+Creating graph data (for network analysis): `igraph`
+
+Plotting: `ggplot2`, `ggraph`
+
+---
+class: inverse, center, middle
+
+# Uses of R in sports analytics
+
+## Example 2: Network analysis in Australian football
+
+---
+class: inverse, center, middle
+
+# Uses of R in sports analytics
+
+## Example 3: Scoring dynamics in Australian football
+
+---
 
 ---
 
@@ -395,7 +481,7 @@ library(readr) #<<
 
 # Import the data into your R session
 winter <- read_csv(
-  here("winter.csv"), col_names = TRUE, col_types = NULL)
+  here("data/winter.csv"), col_names = TRUE, col_types = NULL)
 
 ```
 
