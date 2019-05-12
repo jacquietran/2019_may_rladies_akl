@@ -88,6 +88,139 @@ Image credit: [**Flickr**](https://www.flickr.com/photos/neelelora/6987389739/)
 ]
 
 ---
+class: inverse, center, middle
+
+# "Applied sport science"
+
+# `r emo::ji("thinking")`
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/deakin_sprint_start.jpg)
+background-size: cover
+
+.footnote[
+Image credit: **Deakin University**
+]
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/deakin_gait_lab.jpg)
+background-size: contain
+
+.footnote[
+Image credit: **Deakin University**
+]
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/deakin_vo2.jpg)
+background-size: cover
+
+.footnote[
+Image credit: **Deakin University**
+]
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/deakin_gym.jpg)
+background-size: contain
+
+.footnote[
+Image credit: **Deakin University**
+]
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/Match_Analysis_Portable_K2_Panoramic_Video_Camera_System.jpg)
+background-size: contain
+
+.footnote[
+Image credit: [**Wikimedia**](https://en.wikipedia.org/wiki/File:Match_Analysis_Portable_K2_Panoramic_Video_Camera_System.jpg)
+]
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/UniNutrition-043-1.jpg)
+background-size: contain
+
+.footnote[
+Image credit: [**University of Bath**](https://www.teambath.com/physio-sport-science/sports-nutrition/)
+]
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/Sports-Psychology1.jpg)
+background-size: 85% 85%
+
+.footnote[
+Image credit: [**Boxing News**](http://www.boxingnewsonline.net/how-to-use-sports-psychology/)
+]
+
+---
+class: inverse, center, middle
+
+# A potted history of data in sport
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/question-mark.jpg)
+background-size: cover
+
+## For many years...
+
+Sports performance data has been **challenging** to collect.
+
+--
+
+<br />
+<br />
+<br />
+Imagine that you want to measure how fast an athlete sprints over a short distance.
+
+**How would you do this?**
+
+---
+class: center
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/av_hill_speed_testing.png)
+background-size: 65% 65%
+
+## A.V. Hill in 1927
+
+.footnote[
+Image credit: [**Bassett, 2002, J Appl Physiol**](https://www.semanticscholar.org/paper/Scientific-contributions-of-A.-V.-Hill%3A-exercise-Bassett/fce9096c04e4425f30ba6ebe78a026c6b3be2ea6)
+]
+
+---
+class: center
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/deakin_light_gates.jpg)
+background-size: 60% 65%
+
+## A contemporary solution, with **LASERS**
+
+.footnote[
+Image credit: **Deakin University**
+]
+
+---
+
+## Today in elite sport...
+
+--
+
+It is faster and easier to collect data than it has ever been.
+
+--
+
+We have more data than we know what to do with!
+
+--
+
+Sport scientists are now learning how to work with large amounts of data:
+
+- Efficiency
+- Comprehensiveness
+- Meaning
+- Clarity
+
+---
+class: inverse, center, middle
+
+# Uses of R in sports analytics
+
+---
 
 ## Workshop materials
 
