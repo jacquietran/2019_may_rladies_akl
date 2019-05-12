@@ -1,457 +1,1426 @@
 ---
 title: "Working with data in elite sport"
-author: "Dr Jacquie Tran | @jacquietran | Senior Insights Researcher, HPSNZ"
-date: "15 May 2019"
+date: "Dr Jacquie Tran &nbsp; | &nbsp; @jacquietran | &nbsp; 15 May 2019"
 output:
-  ioslides_presentation:
-    widescreen: true
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+      titleSlideClass: [bottom, center]
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 
-knitr::opts_chunk$set(echo = TRUE)
+options(htmltools.dir.version = FALSE, echo = TRUE)
 
-# Load libraries
-library(dplyr)
-library(ggplot2)
+# Load libraries ---------------------------------------------------------------
+
+library(ghibli)
+library(xaringanthemer)
 
 ```
 
-***
+```{r xaringan_themer, include = FALSE}
 
-<center><img src="images/2017lecture.png" width="100%" /></center>
+mono_light(
+  base_color = ghibli_palette("YesterdayDark")[2],
+  header_font_google = google_font("Walter Turncoat"),
+  header_h1_font_size = "65px",
+  header_h2_font_size = "50px",
+  header_h3_font_size = "40px",
+  # header_font_weight = "bold",
+  text_font_google   = google_font("Montserrat", "400", "400i", "400b"),
+  text_font_size = "26px",
+  code_font_google   = google_font("Droid Mono"),
+  padding = "0em 2em 1em 2em",
+  footnote_color = "#666666",
+  footnote_font_size = "0.5em",
+  footnote_position_bottom = "0.5em",
+  extra_css = list(".title-slide" = list("background-image" = "url(https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/titlebg.jpg)", "background-size" = "cover"))
+)
 
-## A general workflow for sports analytics {.build}
+```
+
+class: right, middle
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/rladiesbg.png)
+background-size: cover
+
+--
+
+## Today's session
+
+Uses of R in sports analytics
+
+Play with some sports data!
+
+---
+class: inverse, center, middle
+
+# A bit about me...
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/aus_map_base.jpg)
+background-size: cover
+
+.footnote[
+Image credit: [**University of Melbourne**](https://biomedicalsciences.unimelb.edu.au/departments/pharmacology/engage/avru/discover/snakes/common-brown-snake)
+]
+
+---
+class: center, top
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/eastern_brown_snake_aus.jpg)
+background-size: cover
+
+.footnote[
+Image credit: [**University of Melbourne**](https://biomedicalsciences.unimelb.edu.au/departments/pharmacology/engage/avru/discover/snakes/common-brown-snake)
+]
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/flinders_st.jpg)
+background-size: cover
+
+.footnote[
+Image credit: [**Flickr**](https://www.flickr.com/photos/neelelora/6987389739/)
+]
+
+---
+
+## Workshop materials
+
+``` {r workshop_setup, eval = FALSE}
+
+# If you don't already have the {usethis} package:
+install.packages("usethis")
+
+# Once installed:
+use_course("/path_to_companion_materials")
+
+# Ref for ME! DELETE before presenting
+# https://usethis.r-lib.org/reference/use_course.html
+
+```
+
+---
+
+## A general workflow for sports analytics
 
 Determine the need through collaboration
 
+--
+
 Articulate the need as a question
+
+--
 
 Scope out the 'minimum viable product'
 
+--
+
 Allow time for peer review
+
+--
 
 Communicate the findings in appropriate ways
 
-# Why use R for sports analytics? | (or similar programming languages)
+---
+class: inverse, center, middle
 
-## Excel: The power and pitfalls of an 'all-in-one' tool {.build}
+# Coding with data
 
-Data, analysis outputs, and visualisation are stored in one place
+---
 
-Data is easily manipulated - high risk of introducing errors
+## Excel: Its power and its pitfalls
 
-Point-and-click interface - manual repetition
+--
 
-Actions are not logged
+1. Data, analysis outputs, and visualisation are **stored in one file**.
 
-Slow when working with large data sets or files storing many computations
+--
 
-Complex Excel workbooks can 'break' when shared with others
+2. Data is **easily manipulated** - high risk of introducing errors.
 
-## The case for programming {.build}
+--
 
-Separation of data, analysis outputs, visualisations, and reports
+3. Point-and-click interface - **manual repetition!**
 
-Reproducible, transparent, and less error-prone workflow
+--
 
-Much faster for repetitive actions than point-and-click
+4. **Actions are not logged** by default.
 
-Requires you to think early and often about data structure
+--
 
-Procedures are documented via scripts and command history
+5. **Slow** when working with large data sets or files storing many computations.
 
-Build up a library of repeatable, adaptable procedures
+--
 
-# Now for some demos!
+6. Complicated **workbooks can 'break' when shared** with others.
 
-## First, a quick intro to R... {.build}
+---
+class: inverse, center, middle
 
-R is a statistical programming language, RStudio is an IDE for using R
+<img src="https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/excel_stopped_working.png" width = "700px" />
 
-Its most fundamental component is 'base R' but it is highly extensible
+---
 
-R is free and open source: users benefit from packages created by others
+## The case for coding
 
-The R community is global and active - lots of help for when you get stuck!
+--
 
-# Demo 1 | Summarising data from the Winter Olympics
+1. **Separation** of data, analysis outputs, visualisations, and reports.
 
-***
+--
 
-Demo 1 uses the `winter` data set [downloadable from this link](https://www.kaggle.com/the-guardian/olympic-games/data).
+2. **Reproducible**, transparent, and less error-prone workflow.
 
-It includes all podium results from Winter Olympic Games that have taken place from 1924 to 2014, inclusive.
+--
+
+3. Coding methods are **faster** than point-and-click as your **data gets bigger**, your **actions more repetitive**, and your **analyses more sophisticated**.
+
+--
+
+4. Procedures are **documented** via scripts and command history.
+
+--
+
+5. **Build your own library** of frequently used analytical procedures - or use and adapt libraries created by open source developers!
+
+---
+class: inverse, center, middle
+
+# A tidy workflow
+
+---
+class: center, middle
+
+![](https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/tidy_workflow.png)
+
+Grolemund & Wickham, 2017, **[R for Data Science](https://r4ds.had.co.nz/)**
+
+---
+class: inverse, center, middle
+
+# Worked example with sports data
+## Winter Olympics medallists 1924–2014
+
+---
 
 <br />
-<center><img src="images/ChloeKim.jpg" width="60%" /></center>
+This example uses a publicly available data set that includes **all podium results from the Winter Olympic Games from 1924 to 2014, inclusive**.
 
-## Import data
+<center>
+<img src="https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/ChloeKim.jpg" width="600px" />
+</center>
 
-``` {r demo1DataImport, message = FALSE}
+--
 
-# The readr package is efficient for reading (importing) of CSV files
-library(readr)
+The `winter` data set is downloadable from this link:  
+**[https://www.kaggle.com/the-guardian/olympic-games/data](https://www.kaggle.com/the-guardian/olympic-games/data)**
 
-# Read the data in
-winter <- read_csv("winter.csv", col_names = TRUE, col_types = NULL)
+---
+class: inverse, center, middle
+
+# 'Start with the end in mind.'
+
+---
+class: center, middle
+
+## **How many gold medals** were won by
+## **Canada, Norway, and Sweden** at the
+## **last five Winter Olympic Games**, up to 2014?
+
+---
+
+<br />
+To answer this question, we will use R to create this **data table**...
+
+![](https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/demo1_data_table.PNG)
+
+---
+
+<br />
+...and this **data plot**!
+
+![](https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/demo1_data_plot.png)
+
+---
+
+## Import the data
+
+``` {r demo1_import_data_part_1a, message = FALSE, warning = FALSE}
+
+# The {here} package helps point to a PROJECT-specific file directory,
+# rather than a location specific to YOUR personal computer, like:
+# C:\Users\Jacquie\Documents
+library(here) #<<
+
+# The {readr} package is efficient for reading (importing) CSVs
+library(readr) #<<
+
+# Import the data into your R session
+winter <- read_csv(
+  here("winter.csv"), col_names = TRUE, col_types = NULL)
 
 ```
 
+---
+
+## Import the data
+
+``` {r demo1_import_data_part_1b, eval = FALSE}
+
+# The {here} package helps point to a PROJECT-specific file directory,
+# rather than a location specific to YOUR personal computer, like:
+# C:\Users\Jacquie\Documents
+library(here)
+
+# The {readr} package is efficient for reading (importing) CSVs
+library(readr)
+
+# Import the data into your R session
+winter <- read_csv(                                            #<<
+  here("data/winter.csv"), col_names = TRUE, col_types = NULL) #<<
+
+```
+
+---
+
 ## Check the data
 
-``` {r demo1DataCheck}
+``` {r demo1_check_data, eval = FALSE}
 
 head(winter)
 
 ```
 
-## Subset the data {.build}
+--
 
-Let's say we are interested in comparing the **number of gold medals won** by **Canada, Norway, and Sweden** from the **last five Winter Olympic Games**.
+``` {r demo1_check_data_eval, eval = TRUE, echo = FALSE}
+
+# This code chunk won't show on the slide but
+# the code will evaluate to print the first 6 rows of data
+# allowing for separation of the code chunk from its result
+head(winter)
+
+```
+
+---
+
+## Subset the data
+
+Remember our motivating question: **How many gold medals** were won by **Canada, Norway, and Sweden** at the **last five Winter Olympic Games**, up to 2014?
+
+--
 
 We need to subset the data to focus only on:
 
 - Gold medal results
+
+--
+
 - Athletes from Canada (CAN), Norway (NOR), or Sweden (SWE), and
-- Results from the last five Winter Olympics (1998 to 2014)
+
+--
+
+- Results from the five Winter Olympics between 1998 to 2014, inclusive.
+
+---
 
 ## Subset the data
 
-``` {r demo1DataSubset}
+``` {r demo1_subset_data_part_1, warning = FALSE, message = FALSE}
 
-# The dplyr package includes useful data manipulation functions
-library(dplyr)
+# The {dplyr} package includes useful data manipulation functions
+library(dplyr) #<<
 
 # Subset the data
-goldMedalComparison <- winter %>%
+gold_medal_comparison <- winter %>%
   filter(Medal == "Gold"
          & Country %in% c("CAN", "NOR", "SWE")
          & Year >= 1998)
 
 ```
 
-## Check the data
+---
 
-``` {r demo1DataSubsetCheck}
+## Subset the data
 
-goldMedalComparison
+``` {r demo1_subset_data_part_2, eval = FALSE}
+
+# The {dplyr} package includes useful data manipulation functions
+library(dplyr)
+
+# Subset the data
+gold_medal_comparison <- winter %>%            #<<
+  filter(Medal == "Gold"
+         & Country %in% c("CAN", "NOR", "SWE")
+         & Year >= 1998)
 
 ```
 
-## Wrangle the data {.build}
+---
+
+## Subset the data
+
+``` {r demo1_subset_data_part_3, eval = FALSE}
+
+# The {dplyr} package includes useful data manipulation functions
+library(dplyr)
+
+# Subset the data
+gold_medal_comparison <- winter %>%
+  filter(Medal == "Gold"                       #<<
+         & Country %in% c("CAN", "NOR", "SWE") #<<
+         & Year >= 1998)                       #<<
+
+```
+
+---
+
+## Check the data
+
+``` {r demo1_check_subset}
+
+head(gold_medal_comparison,
+     n = 9) #<<
+
+```
+
+---
+
+## Wrangle the data
 
 In the `winter` data set, the data is structured such that **one row is one medal-winning athlete**.
 
 However...
 
-- Team events (e.g., bobsleigh) comprise multiple athletes, and
+--
+
+- Team events (e.g., bobsleigh, curling) comprise multiple athletes, and
+
+--
+
 - Within teams that achieve a podium finish, each athlete is awarded a medal.
+
+--
 
 For this analysis, we need to wrangle the data to get it into a format where **one row represents one gold medal per event** (rather than per athlete).
 
-## Wrangle the data
+---
 
-``` {r demo1DataWranglePart1}
+## Create a new 'identifier' variable
 
-# Create a new variable to identify each unique event
-goldMedalComparison$uniqueEventID <-
-  paste(goldMedalComparison$Year, goldMedalComparison$Sport,
-        goldMedalComparison$Discipline, goldMedalComparison$Country,
-        goldMedalComparison$Gender, goldMedalComparison$Event, sep="_")
+``` {r demo1_wrangle_data_part_1}
 
-```
-
-## Wrangle the data
-
-``` {r demo1DataWranglePart2}
-
-goldMedalComparison %>%
-  select(uniqueEventID)
+gold_medal_comparison$unique_event_ID <- #<<
+  paste(gold_medal_comparison$Year,
+        gold_medal_comparison$Sport,
+        gold_medal_comparison$Discipline,
+        gold_medal_comparison$Country,
+        gold_medal_comparison$Gender,
+        gold_medal_comparison$Event,
+        sep = "_")
 
 ```
 
-## Wrangle the data
+---
 
-``` {r demo1DataWranglePart3}
+## Create a new 'identifier' variable
 
-# Identify duplicates
-goldMedalComparison$duplicates <- duplicated(goldMedalComparison$uniqueEventID)
+``` {r demo1_wrangle_data_part_2, eval = FALSE}
 
-goldMedalComparison %>%
-  select(uniqueEventID, duplicates)
+gold_medal_comparison$unique_event_ID <-
+  paste(gold_medal_comparison$Year,           #<<
+        gold_medal_comparison$Sport,          #<<
+        gold_medal_comparison$Discipline,     #<<
+        gold_medal_comparison$Country,        #<<
+        gold_medal_comparison$Gender,         #<<
+        gold_medal_comparison$Event,          #<<
+        sep = "_")                            #<<
 
 ```
 
-## Wrangle the data
+---
 
-``` {r demo1DataWranglePart4}
+## Check the new variable
 
-# Remove duplicates from the data
-# and remove temporary variables used for identifying duplicates
-goldMedalComparison <- goldMedalComparison %>%
+``` {r demo1_wrangle_data_part_3a, eval = FALSE}
+
+gold_medal_comparison %>%
+  select(unique_event_ID) #<<
+
+```
+
+--
+
+``` {r demo1_wrangle_data_part_3b, echo = FALSE}
+
+# This code chunk will evaluate but not display
+gold_medal_comparison %>%
+  select(unique_event_ID)
+
+```
+
+---
+
+## Check the new variable
+
+``` {r demo1_wrangle_data_part_3c, highlight.output = c(6,7)}
+
+gold_medal_comparison %>%
+  select(unique_event_ID)
+
+```
+
+---
+
+## Check the new variable
+
+``` {r demo1_wrangle_data_part_3d, highlight.output = c(8:12)}
+
+gold_medal_comparison %>%
+  select(unique_event_ID)
+
+```
+
+---
+
+## Identify duplicate event IDs
+
+``` {r demo1_wrangle_data_part_4a, eval = FALSE}
+
+gold_medal_comparison %>%
+  mutate(duplicates = duplicated(unique_event_ID)) %>% #<<
+  select(unique_event_ID, duplicates) %>%
+  head(n = 7)
+
+```
+
+--
+
+``` {r demo1_wrangle_data_part_4b, echo = FALSE}
+
+# This code chunk will evaluate but not display
+gold_medal_comparison %>%
+  mutate(duplicates = duplicated(unique_event_ID)) %>%
+  select(unique_event_ID, duplicates) %>%
+  head(n = 7)
+
+```
+
+---
+
+## Identify duplicate event IDs
+
+``` {r demo1_wrangle_data_part_4c, highlight.output = c(7,9,10)}
+
+gold_medal_comparison %>%
+  mutate(duplicates = duplicated(unique_event_ID)) %>%
+  select(unique_event_ID, duplicates) %>%
+  head(n = 7)
+
+```
+
+---
+
+## Omit rows with duplicate IDs
+
+``` {r demo1_wrangle_data_part_5a, eval = FALSE}
+
+gold_medal_comparison <- gold_medal_comparison %>%     #<<
+  mutate(duplicates = duplicated(unique_event_ID)) %>%
   filter(duplicates == FALSE) %>%
-  select(-uniqueEventID, -duplicates)
+  select(Year, City, Sport, Country, Event, Medal)
 
 ```
 
-## Wrangle the data
+---
 
-``` {r demo1DataWranglePart5}
+## Omit rows with duplicate IDs
 
-goldMedalComparison %>%
-  select(Year, Sport, Country, Event)
+``` {r demo1_wrangle_data_part_5b, eval = FALSE}
+
+gold_medal_comparison <- gold_medal_comparison %>%
+  mutate(duplicates = duplicated(unique_event_ID)) %>% #<<
+  filter(duplicates == FALSE) %>%
+  select(Year, City, Sport, Country, Event, Medal)
 
 ```
 
-## Calculate summary statistics
+---
 
-The data is now in a format that is ready for calculating summary statistics.
+## Omit rows with duplicate IDs
 
-For instance, we can tabulate the total number of gold medals won by Canada, Norway, and Sweden at each of the Winter Games since 1998.
+``` {r demo1_wrangle_data_part_5c, eval = FALSE}
 
-## Calculate summary statistics
+gold_medal_comparison <- gold_medal_comparison %>%
+  mutate(duplicates = duplicated(unique_event_ID)) %>%
+  filter(duplicates == FALSE) %>%                      #<<
+  select(Year, City, Sport, Country, Event, Medal)     #<<
 
-``` {r demo1SummaryStatsPart1, message = FALSE}
+```
 
-# The reshape2 package is useful for manipulating data
-# from long-to-wide format and vice versa
-library(reshape2)
+--
+
+``` {r demo1_wrangle_data_part_5d, echo = FALSE}
+
+# This code chunk will evaluate but not display
+gold_medal_comparison <- gold_medal_comparison %>%
+  mutate(duplicates = duplicated(unique_event_ID)) %>%
+  filter(duplicates == FALSE) %>%
+  select(Year, City, Sport, Country, Event, Medal)
+
+# Check the data
+head(gold_medal_comparison)
+
+```
+
+---
+
+## Omit rows with duplicate IDs
+
+``` {r demo1_wrangle_data_part_5e, eval = FALSE}
+
+gold_medal_comparison <- gold_medal_comparison %>%
+  mutate(duplicates = duplicated(unique_event_ID)) %>%
+  filter(duplicates == FALSE) %>%
+  select(Year, City, Sport, Country, Event, Medal)
+
+```
+
+``` {r demo1_wrangle_data_part_5f, echo = FALSE, highlight.output = c(6)}
+
+# Check the data
+head(gold_medal_comparison)
+
+```
+
+---
+
+## Omit rows with duplicate IDs
+
+``` {r demo1_wrangle_data_part_5g, eval = FALSE}
+
+gold_medal_comparison <- gold_medal_comparison %>%
+  mutate(duplicates = duplicated(unique_event_ID)) %>%
+  filter(duplicates == FALSE) %>%
+  select(Year, City, Sport, Country, Event, Medal)
+
+```
+
+``` {r demo1_wrangle_data_part_5h, echo = FALSE, highlight.output = c(7)}
+
+# Check the data
+head(gold_medal_comparison)
+
+```
+
+---
+
+## Calculate gold medal totals
+
+Now that we have tidied up the data into the format we need, we can calculate the **total number of gold medals** won by **Canada, Norway, and Sweden** at each of the **Winter Games between 1998 and 2014**.
+
+---
+
+## Calculate gold medal totals
+
+``` {r demo1_summary_stats_part_1a, message = FALSE}
 
 # Calculate total number of gold medals per team per Winter Games
-goldMedalTotals <- goldMedalComparison %>%
+gold_medal_totals <- gold_medal_comparison %>%    #<<
   group_by(Year, City, Country) %>%
-  summarise(goldMedalTotal = length(Medal)) %>%
+  summarise(gold_medal_total = length(Medal)) %>%
   ungroup()
 
-# Reshape the data from long-to-wide format for tabulating
-goldMedalTotalsWide <- dcast(goldMedalTotals,
-                             Year + City ~ Country,
-                             value.var = "goldMedalTotal")
+```
+
+---
+
+## Calculate gold medal totals
+
+``` {r demo1_summary_stats_part_1b, message = FALSE, eval = FALSE}
+
+# Calculate total number of gold medals per team per Winter Games
+gold_medal_totals <- gold_medal_comparison %>%
+  group_by(Year, City, Country) %>%               #<<
+  summarise(gold_medal_total = length(Medal)) %>%
+  ungroup()
 
 ```
 
-## Calculate summary statistics {.build}
+---
 
-``` {r demo1SummaryStatsPart2}
+## Calculate gold medal totals
+
+``` {r demo1_summary_stats_part_1c, message = FALSE, eval = FALSE}
+
+# Calculate total number of gold medals per team per Winter Games
+gold_medal_totals <- gold_medal_comparison %>%
+  group_by(Year, City, Country) %>%
+  summarise(gold_medal_total = length(Medal)) %>% #<<
+  ungroup()
+
+```
+
+---
+
+## Calculate gold medal totals
+
+``` {r demo1_summary_stats_part_1d, message = FALSE, eval = FALSE}
+
+# Calculate total number of gold medals per team per Winter Games
+gold_medal_totals <- gold_medal_comparison %>%
+  group_by(Year, City, Country) %>%
+  summarise(gold_medal_total = length(Medal)) %>%
+  ungroup()                                       #<<
+
+```
+
+---
+
+## Calculate gold medal totals
+
+When we check the data, we can see it is in long format:
+
+``` {r demo1_summary_stats_part1e}
+
+gold_medal_totals
+
+```
+
+---
+
+## Reshape gold medal totals
+
+We can reshape the data from long to wide format, to make it more **human-readable** when we display the gold medal totals in a table.
+
+``` {r demo1_summary_stats_part2a, warning = FALSE}
+
+# The {tidyr} package helps to convert between
+# long and wide data formats
+library(tidyr) #<<
+
+# Spread the data from long to wide format for tabulating
+gold_medal_totals_wide <- gold_medal_totals %>%
+  spread(key = Country, value = gold_medal_total)
+
+```
+
+---
+
+## Reshape gold medal totals
+
+We can reshape the data from long to wide format, to make it more **human-readable** when we display the gold medal totals in a table.
+
+``` {r demo1_summary_stats_part2b, warning = FALSE, eval = FALSE}
+
+# The {tidyr} package helps to convert between
+# long and wide data formats
+library(tidyr)
+
+# Spread the data from long to wide format for tabulating
+gold_medal_totals_wide <- gold_medal_totals %>%   #<<
+  spread(key = Country, value = gold_medal_total)
+
+```
+
+---
+
+## Reshape gold medal totals
+
+We can reshape the data from long to wide format, to make it more **human-readable** when we display the gold medal totals in a table.
+
+``` {r demo1_summary_stats_part2c, warning = FALSE, eval = FALSE}
+
+# The {tidyr} package helps to convert between
+# long and wide data formats
+library(tidyr)
+
+# Spread the data from long to wide format for tabulating
+gold_medal_totals_wide <- gold_medal_totals %>%
+  spread(key = Country, value = gold_medal_total) #<<
+
+```
+
+---
+
+## Reshape gold medal totals
+
+``` {r demo1_summary_stats_part_2}
 
 # Check the reshaped data
-goldMedalTotalsWide
+gold_medal_totals_wide
 
 ```
 
-``` {r demo1SummaryStatsPart3}
+--
 
-# NAs appear in the data because Sweden did not win any gold medals
+``` {r demo1_summary_stats_part_3}
+
+# NAs appear because SWE did not win any gold medals
 # at the 1998 and 2002 Winter Games
 
-# Replace these NAs with zeroes
-goldMedalTotalsWide$SWE[is.na(goldMedalTotalsWide$SWE)] <- 0
+# Replace NAs with zeroes
+gold_medal_totals_wide[is.na(gold_medal_totals_wide)] <- 0 #<<
 
 ```
 
-## Calculate summary statistics
+---
 
-``` {r demo1SummaryStatsPart4}
+## Display gold medal totals
 
-# The DT package is used to display interactive tables in HTML documents
+``` {r demo1_summary_stats_part_4a, eval = FALSE}
+
+# The {DT} package is used to display interactive tables in HTML documents
+library(DT) #<<
+
+# Display the totals in a table, with nicer column names
+datatable(gold_medal_totals_wide,
+          rownames = FALSE,
+          options = list(dom = "t"))
+
+```
+
+---
+
+## Display gold medal totals
+
+``` {r demo1_summary_stats_part_4b, eval = FALSE}
+
+# The {DT} package is used to display interactive tables in HTML documents
 library(DT)
 
-# Display the table
-datatable(goldMedalTotalsWide, options = list(dom = 't'), rownames = FALSE)
+# Display the totals in a table, with nicer column names
+datatable(gold_medal_totals_wide,    #<<
+          rownames = FALSE,
+          options = list(dom = "t"))
 
 ```
 
-## Calculate summary statistics {.build}
+---
 
-We can use the data frame we've just created - gold medal totals per team per Games - to calculate the median number of gold medals won by Canada, Norway, and Sweden at the last five Games.
+## Display gold medal totals
 
-``` {r demo1SummaryStatsPart5}
+``` {r demo1_summary_stats_part_4c, eval = FALSE}
 
-goldMedalMedians <- goldMedalTotalsWide %>%
-  summarise(CAN = median(CAN),
-            NOR = median(NOR),
-            SWE = median(SWE))
+# The {DT} package is used to display interactive tables in HTML documents
+library(DT)
 
-goldMedalMedians
-
-```
-
-# Demo 2 | Visualising AFLW data
-
-***
-
-For demo 2, we will use data from season 1 of the AFLW to show how sports data can be visualised using R.
-
-<center><img src="images/1490593790108.jpg" width="60%" /></center>
-
-## Import the data
-
-``` {r demo2DataImport, message = FALSE}
-
-# This data was obtained from this Github repository:
-# https://github.com/ropenscilabs/ozwomensport/tree/master/AFLW
-aflwTeamStats <- read_csv("teams.csv", col_names = TRUE, col_types = NULL)
-
-head(aflwTeamStats)
+# Display the totals in a table, with nicer column names
+datatable(gold_medal_totals_wide,
+          rownames = FALSE,          #<<
+          options = list(dom = "t")) #<<
 
 ```
 
-## Subset the data
+---
 
-Let's compare some basic stats across clubs. First, we need to prepare the data.
+## Display gold medal totals
 
-``` {r demo2DataSubset}
+``` {r demo1_summary_stats_part_5, eval = TRUE, echo = FALSE, warning = FALSE}
 
-aflwTeamStats <- aflwTeamStats %>%
-  filter(Club != "All Clubs")
+# This code chunk won't display on the slide but
+# the code will evaluate to display summary stats
+# in an interactive HTML table
+library(DT)
+
+datatable(gold_medal_totals_wide,
+          rownames = FALSE,
+          options = list(dom = "t"))
 
 ```
+
+---
 
 ## Plot the data
 
-``` {r demo2BuildPlot1}
+We can also plot the gold medal totals we've calculated, which will make it easier to draw visual comparisons between countries and over time.
 
-# The ggplot2 package is widely used for plotting in R
-# It uses a layer-by-layer approach to building plots
+--
+
+Remember our motivating question: **How many gold medals** were won by **Canada, Norway, and Sweden** at the **last five Winter Olympic Games**, up to 2014?
+
+---
+
+<br />
+...we can use the table of gold medal totals to produce **this plot**, using a popular R package called `ggplot2`:
+
+![](https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/demo1_data_plot.png)
+
+---
+
+## gg = Grammar of Graphics
+
+``` {r load_ggplot2, message = FALSE, warning = FALSE}
+
+# The {ggplot2} package is a powerful, feature-rich
+# R package for creating data visualisations
 library(ggplot2)
 
-# Sort by average kicks per game
-aflwTeamStats <- aflwTeamStats[order(aflwTeamStats$Kicks), ]
-
-# Build the plot
-p <- ggplot(aflwTeamStats, aes(x = reorder(Club, -Kicks), y = Kicks, fill = Club))
-p <- p + facet_wrap(~Year, nrow = 1)
-p <- p + geom_bar(stat = "identity")
-p <- p + scale_y_continuous(
-  limits = c(0,150), breaks = seq(0,150, by = 25))
-p <- p + labs(title = "Comparing average kicks per game across AFLW teams",
-              x = "Club",
-              y = "Average kicks per game")
-p <- p + theme(legend.position = "none",
-               axis.text.x  = element_text(angle = 90, vjust = 0.5))
-aflwKicksPlot <- p
-
 ```
+
+`ggplot2` draws upon a **layered Grammar of Graphics** as a theoretical foundation for how to make plots (Wilkinson et al., 2005; Wickham, 2010).
+
+.footnote[
+[1] Wilkinson et al., 2005, _['The Grammar of Graphics'](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448)_.
+
+[2] Wickham, 2010, ['A layered grammar of graphics'](https://vita.had.co.nz/papers/layered-grammar.html), _Journal of Computational and Graphical Statistics_
+]
+
+---
+class: center, middle
+
+![](https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/gg_fig1.PNG)
+
+Wickham, 2010, **['A layered grammar of graphics'](https://vita.had.co.nz/papers/layered-grammar.html)**
+
+---
+class: center, middle
+
+<img src="https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/gg_fig2.PNG" width="717px" />
+
+Wickham, 2010, **['A layered grammar of graphics'](https://vita.had.co.nz/papers/layered-grammar.html)**
+
+---
 
 ## Plot the data
 
-``` {r demo2ShowPlot1, echo = FALSE, fig.width = 7, fig.height = 5}
+``` {r demo1_build_plot_part_1a}
 
-aflwKicksPlot
+# Start building the plot, layer-by-layer
+p <- ggplot(data = gold_medal_totals,           #<<
+            aes(x = Year, y = gold_medal_total,
+                fill = Country))
+p <- p + geom_bar(stat = "identity")
 
 ```
 
-# Other neat things you can do in R
+---
 
-## Statistical analyses {.build}
+## Plot the data
 
-This presentation is _not_ a deep dive into statistics, but R is more than capable of running a vast array of stats including:
+``` {r demo1_build_plot_part_1b, eval = FALSE}
 
-- Hypothesis testing techniques
-- Effect sizes
-- Mixed models
-- Regression and classification
-- Network analysis
-- Time series analysis
-- And much much more...
+# Start building the plot, layer-by-layer
+p <- ggplot(data = gold_medal_totals,
+            aes(x = Year, y = gold_medal_total, #<<
+                fill = Country))
+p <- p + geom_bar(stat = "identity")
 
-## Text mining
+```
 
-<center><a href="https://www.tidytextmining.com/sentiment.html" target="_blank"><img src="images/sentiment.png" width="90%" /></a></center>
+---
 
-## Geospatial plots
+## Plot the data
 
-<center><a href="https://twitter.com/marcus_volz/status/944492030117363713" target="_blank"><img src="images/Volz.png" width="55%" /></a></center>
+``` {r demo1_build_plot_part_1c, eval = FALSE}
 
-## Geospatial plots
+# Start building the plot, layer-by-layer
+p <- ggplot(data = gold_medal_totals,
+            aes(x = Year, y = gold_medal_total,
+                fill = Country))                #<<
+p <- p + geom_bar(stat = "identity")
 
-<center><a href="https://thedatagame.com.au/2015/09/27/how-to-create-nba-shot-charts-in-r/" target="_blank"><img src="images/shotchart.png" width="65%" /></a></center>
+```
 
-## Interactive dashboards
+---
 
-<center><a href="http://lenkiefer.com/chartbooks/jan2017/mortgage_rate_viewer_jan_2017.html" target="_blank"><img src="images/dash.png" width="90%" /></a></center>
+## Plot the data
 
-***
+``` {r demo1_build_plot_part_1d, eval = FALSE}
 
-<center><img src="images/thanks-1804597_1920.jpg" width="55%" /></center>
-<br />
-<center>[https://github.com/jacquietran/acu-gcpa-2018-02](https://github.com/jacquietran/acu-gcpa-2018-02)</center>
-<br />
-<hr />
-<br />
-<center>Dr Jacquie Tran | @jacquietran | [https://www.jacquietran.com](https://www.jacquietran.com)</center>
+# Start building the plot, layer-by-layer
+p <- ggplot(data = gold_medal_totals,
+            aes(x = Year, y = gold_medal_total,
+                fill = Country))
+p <- p + geom_bar(stat = "identity")            #<<
 
-# Appendix 1: Learning R
+```
 
-## Starter resources
+--
 
-[Try R](http://tryr.codeschool.com): An in-the-browser tutorial for getting to know the R language - no software installation needed.
+To display the plot, call the object `p`:
 
-['Introduction to R'](www.datacamp.com/courses/free-introduction-to-r): Free course on [Data Camp](https://www.datacamp.com).
+``` {r demo1_display_plot_1a, eval = FALSE}
 
-['R for Data Science'](http://r4ds.had.co.nz/), by Garrett Grolemund & Hadley Wickham.
+p
 
-['Data wrangling, exploration, and analysis with R'](http://stat545.com/): Course materials from a unit taught at the University of British Columbia by Prof Jenny Bryan.
+```
 
-['R for data analysis and visualisation'](http://www.datacarpentry.org/R-ecology-lesson/index.html): Data Carpentry lesson using ecology data
+---
+class: center, middle
 
-[The Data Science Guide](http://www.datasciguide.com/find-content-2/): A useful resource for finding content all over the web for learning different data science skills and programming languages. You can tailor your search to your current level of expertise in a given domain.
+``` {r demo1_display_plot_1b, echo = FALSE, fig.width = 16, fig.height = 7.5}
 
-## Transitioning from Excel to R
+# This code chunk will evaluate but not display
+p
 
-['R for Excel Users'](http://blog.shotwell.ca/2017/02/02/r-for-excel-users/): Blog post by Gordon Shotwell
+```
 
-['Introduction to R for Excel Users'](https://tomhopper.me/2016/05/03/r-for-excel-users/): Free ebook by Tom Hopper
+It's a start, but...
 
-# Appendix 2: The R community
+---
 
-## The R community {.build}
+## Areas for improvement
 
-Follow the [#rstats hashtag on Twitter](https://twitter.com/search?q=%23rstats&src=typd)
+Show countries side-by-side (rather than stacked)
 
-Many prominent R users and developers have blogs and / or tweet regularly. Here are some of my favourites:
+--
 
-@JennyBryan   |   @ma_salmon   |   @alice_data   |   @dataandme   |   @visnut   |   @kierisi   |   @thomasp85   |   @xieyihui   |   @drob   |   @juliasilge
+Informative plot and axis titles
 
-Join, read, and contribute to the R Studio Community discussions: [https://community.rstudio.com/](https://community.rstudio.com/)
+--
 
-You can discover lots of weird, wonderful, and useful R packages and repositories on Github: [https://github.com/trending/r](https://github.com/trending/r)
+Clearer axis breaks
 
-# Appendix 3: Sports data sets
+--
 
-## 'Ready to analyse'
+Colourblind-friendly palette
 
-[AFLW data](https://github.com/ropenscilabs/ozwomensport/tree/master/AFLW) stored on Github
+--
 
-[ATP and WTA tennis data](https://github.com/skoval/deuce), accessible via the R package `deuce`
+Larger font sizes
 
-[Olympic Sports and Medals, 1896-2014](https://www.kaggle.com/the-guardian/olympic-games/data) collated by The Guardian
+---
 
-[NBA, NFL, MLB, and soccer data](https://github.com/fivethirtyeight/data) from [FiveThirtyEight](https://fivethirtyeight.com)
+## Countries shown side-by-side
 
-[NFL play-by-play data](https://github.com/maksimhorowitz/nflscrapR), accessible via the R package `nflscrapR`
+To the previous code chunk we started as the base for this plot, we **add layers** to specify modifications to the plot:
 
-MLB data from [Lahman's Baseball Database](http://seanlahman.com/baseball-archive/statistics/)
+``` {r demo1_build_plot_part_2, eval = FALSE}
 
-[Cricket data](https://github.com/ropenscilabs/cricinfo), accessible via the R package `cricinfo`
+p <- p + facet_wrap(~Country, nrow = 1)
 
-## Needs scraping / cleaning
+```
 
-[WNBA player and game data](http://www.wnba.com/stats/) from WNBA.com
+---
+class: center, middle
 
-AFL match statistics from [AFL Tables](https://afltables.com/afl/afl_index.html)
+``` {r demo1_display_plot_2, echo = FALSE, fig.width = 16, fig.height = 7.5}
 
-AFL draft and trade data from [Draft Guru](https://www.draftguru.com.au/)
+# Build plot
+p <- ggplot(data = gold_medal_totals,
+            aes(x = Year, y = gold_medal_total,
+                fill = Country))
+p <- p + geom_bar(stat = "identity")
+p <- p + facet_wrap(~Country, nrow = 1)
 
-[NCAA men's college basketball data](https://www.sports-reference.com/cbb/) from [Sports Reference](https://www.sports-reference.com)
+# Display plot
+p
 
-[NCAA men's college football data](https://www.sports-reference.com/cfb/) from [Sports Reference](https://www.sports-reference.com)
+```
 
-# Other references and resources
+A bit better, but now the legend is redundant, so we can add it to our 'to do' list.
 
-## References and resources
+---
 
-[Introduction to dplyr](http://stat545.com/block009_dplyr-intro.html)
+## Areas for improvement
 
-[An introduction to reshape2](http://seananderson.ca/2013/10/19/reshape.html)
+~~Show countries side-by-side (rather than stacked)~~
+
+Informative plot and axis titles
+
+Clearer x axis breaks
+
+Colourblind-friendly palette
+
+Larger font sizes
+
+Remove legend
+
+---
+
+## Informative titles
+
+``` {r demo1_build_plot_part_3}
+
+p <- p + labs(
+  title = "Canada increased its Winter Games gold medal haul over 20 years",
+  x = "Year",
+  y = "Total # of gold medals won")
+
+```
+
+---
+
+``` {r demo1_display_plot_3, echo = FALSE, fig.width = 16, fig.height = 7.5}
+
+# Build plot
+p <- ggplot(data = gold_medal_totals,
+            aes(x = Year, y = gold_medal_total,
+                fill = Country))
+p <- p + geom_bar(stat = "identity")
+p <- p + facet_wrap(~Country, nrow = 1)
+p <- p + labs(
+  title = "Canada increased its Winter Games gold medal haul over 20 years",
+  x = "Year",
+  y = "Total # of gold medals won")
+
+# Display plot
+p
+
+```
+
+---
+
+## Areas for improvement
+
+~~Show countries side-by-side (rather than stacked)~~
+
+~~Informative plot and axis titles~~
+
+Clearer x axis breaks
+
+Colourblind-friendly palette
+
+Larger font sizes
+
+Remove legend
+
+---
+
+## Clearer x axis breaks
+
+``` {r demo1_build_plot_part_4}
+
+p <- p + scale_x_continuous(
+  limits = c(1996,2016),
+  breaks = seq(1998,2014, by = 4))
+
+```
+
+---
+
+``` {r demo1_display_plot_4, echo = FALSE, fig.width = 16, fig.height = 7.5}
+
+# Build plot
+p <- ggplot(data = gold_medal_totals,
+            aes(x = Year, y = gold_medal_total,
+                fill = Country))
+p <- p + geom_bar(stat = "identity")
+p <- p + facet_wrap(~Country, nrow = 1)
+p <- p + labs(
+  title = "Canada increased its Winter Games gold medal haul over 20 years",
+  x = "Year",
+  y = "Total # of gold medals won")
+p <- p + scale_x_continuous(
+  limits = c(1996,2016),
+  breaks = seq(1998,2014, by = 4))
+
+# Display plot
+p
+
+```
+
+---
+
+## Areas for improvement
+
+~~Show countries side-by-side (rather than stacked)~~
+
+~~Informative plot and axis titles~~
+
+~~Clearer x axis breaks~~
+
+Colourblind-friendly palette
+
+Larger font sizes
+
+Remove legend
+
+---
+
+## Colourblind-friendly palette
+
+_'As many as 8% of men and 0.5 of women with Northern European ancestry have the common form of red-green color blindness.'_ - National Eye Institute, 2015
+
+--
+
+``` {r load_dichromat, eval = FALSE}
+
+# The {dichromat} package contains 17 palettes that are
+# "suitable for people with deficient or anomalous red-green vision"
+library(dichromat)
+
+```
+
+.footnote[
+[1] National Eye Institute, 2015, ['Facts about color blindness'](https://nei.nih.gov/health/color_blindness/facts_about).
+
+[2] University of British Columbia, ['Using colors in R: Accommodating color blindness'](http://stat545.com/block018_colors.html#accomodating-color-blindness), _STAT 545 course materials_.
+]
+
+---
+class: center, middle
+
+![](https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/dichromat-colorschemes-1.png)
+
+STAT 545: **[Using colors in R](http://stat545.com/block018_colors.html#accomodating-color-blindness)**
+
+---
+
+## Colourblind-friendly palette
+
+``` {r demo1_build_plot_part_5, eval = FALSE}
+
+p <- p + scale_fill_manual(
+  values = c(
+    "CAN" = colorschemes$BluetoGray.8[1],
+    "NOR" = colorschemes$BluetoGray.8[2],
+    "SWE" = colorschemes$BluetoGray.8[7]))
+
+```
+
+---
+
+``` {r demo1_display_plot_5, echo = FALSE, fig.width = 16, fig.height = 7.5}
+
+library(dichromat)
+
+# Build plot
+p <- ggplot(data = gold_medal_totals,
+            aes(x = Year, y = gold_medal_total,
+                fill = Country))
+p <- p + geom_bar(stat = "identity")
+p <- p + facet_wrap(~Country, nrow = 1)
+p <- p + labs(
+  title = "Canada increased its Winter Games gold medal haul over 20 years",
+  x = "Year",
+  y = "Total # of gold medals won")
+p <- p + scale_x_continuous(
+  limits = c(1996,2016),
+  breaks = seq(1998,2014, by = 4))
+p <- p + scale_fill_manual(
+  values = c(
+    "CAN" = colorschemes$BluetoGray.8[1],
+    "NOR" = colorschemes$BluetoGray.8[2],
+    "SWE" = colorschemes$BluetoGray.8[7]))
+
+# Display plot
+p
+
+```
+
+---
+
+## Areas for improvement
+
+~~Show countries side-by-side (rather than stacked)~~
+
+~~Informative plot and axis titles~~
+
+~~Clearer x axis breaks~~
+
+~~Colourblind-friendly palette~~
+
+Larger font sizes
+
+Remove legend
+
+---
+
+## Larger font sizes
+
+``` {r demo1_build_plot_part_6, eval = FALSE}
+
+# Change the base font size for all text elements
+p <- p + theme(
+  text = element_text(size = 28))
+
+```
+
+---
+
+``` {r demo1_display_plot_6, echo = FALSE, fig.width = 16, fig.height = 7.5}
+
+# Build plot
+p <- ggplot(data = gold_medal_totals,
+            aes(x = Year, y = gold_medal_total,
+                fill = Country))
+p <- p + geom_bar(stat = "identity")
+p <- p + facet_wrap(~Country, nrow = 1)
+p <- p + labs(
+  title = "Canada increased its Winter Games gold medal haul over 20 years",
+  x = "Year",
+  y = "Total # of gold medals won")
+p <- p + scale_x_continuous(
+  limits = c(1996,2016),
+  breaks = seq(1998,2014, by = 4))
+p <- p + scale_fill_manual(
+  values = c(
+    "CAN" = colorschemes$BluetoGray.8[1],
+    "NOR" = colorschemes$BluetoGray.8[2],
+    "SWE" = colorschemes$BluetoGray.8[7]))
+p <- p + theme(
+  text = element_text(size = 28))
+
+# Display plot
+p
+
+```
+
+Notice that the different text elements show a hierarchy of font sizes.
+
+---
+
+# Areas for improvement
+
+~~Show countries side-by-side (rather than stacked)~~
+
+~~Informative plot and axis titles~~
+
+~~Clearer x axis breaks~~
+
+~~Colourblind-friendly palette~~
+
+~~Larger font sizes~~
+
+Remove legend
+
+---
+
+## Remove legend
+
+``` {r demo1_build_plot_part_7, eval = FALSE}
+
+# Change the base font size for all text elements
+p <- p + theme(
+  text = element_text(size = 28),
+  legend.position = "none") #<<
+
+```
+
+---
+class: center, middle
+
+``` {r demo1_display_plot_7, echo = FALSE, fig.width = 16, fig.height = 7.5}
+
+# Build plot
+p <- ggplot(data = gold_medal_totals,
+            aes(x = Year, y = gold_medal_total,
+                fill = Country))
+p <- p + geom_bar(stat = "identity")
+p <- p + facet_wrap(~Country, nrow = 1)
+p <- p + labs(
+  title = "Canada increased its Winter Games gold medal haul over 20 years",
+  x = "Year",
+  y = "Total # of gold medals won")
+p <- p + scale_x_continuous(
+  limits = c(1996,2016),
+  breaks = seq(1998,2014, by = 4))
+p <- p + scale_fill_manual(
+  values = c(
+    "CAN" = colorschemes$BluetoGray.8[1],
+    "NOR" = colorschemes$BluetoGray.8[2],
+    "SWE" = colorschemes$BluetoGray.8[7]))
+p <- p + theme(
+  text = element_text(size = 28),
+  legend.position = "none")
+
+# Display plot
+p
+
+```
+
+We're done with our major improvements!
+
+---
+
+## Change position of titles
+
+With our last few tweaks, we can improve readability by increasing the whitespace between the titles and the plot area.
+
+``` {r demo1_build_plot_8, eval = FALSE}
+
+p <- p + theme(
+  text = element_text(size = 28),
+  legend.position = "none",
+  plot.title = element_text(margin = margin(b = 15, unit = "pt")),   #<<
+  axis.title.x = element_text(margin = margin(t = 15, unit = "pt")), #<<
+  axis.title.y = element_text(margin = margin(r = 15, unit = "pt"))) #<<
+
+```
+
+---
+class: center, middle
+
+``` {r demo1_display_plot_8, echo = FALSE, fig.width = 16, fig.height = 7.5}
+
+# Build plot
+p <- ggplot(data = gold_medal_totals,
+            aes(x = Year, y = gold_medal_total,
+                fill = Country))
+p <- p + geom_bar(stat = "identity")
+p <- p + facet_wrap(~Country, nrow = 1)
+p <- p + labs(
+  title = "Canada increased its Winter Games gold medal haul over 20 years",
+  x = "Year",
+  y = "Total # of gold medals won")
+p <- p + scale_x_continuous(
+  limits = c(1996,2016),
+  breaks = seq(1998,2014, by = 4))
+p <- p + scale_fill_manual(
+  values = c(
+    "CAN" = colorschemes$BluetoGray.8[1],
+    "NOR" = colorschemes$BluetoGray.8[2],
+    "SWE" = colorschemes$BluetoGray.8[7]))
+p <- p + theme(
+  text = element_text(size = 28),
+  legend.position = "none",
+  plot.title = element_text(margin = margin(b = 15, unit = "pt")),
+  axis.title.x = element_text(margin = margin(t = 15, unit = "pt")),
+  axis.title.y = element_text(margin = margin(r = 15, unit = "pt")))
+
+# Display plot
+p
+
+```
+
+All done!
+
+---
+class: inverse, center, middle
+
+# Develop your data proficiency
+## Resources to get you started
+
+---
+
+- [**Data organisation in spreadsheets**](https://www.tandfonline.com/doi/abs/10.1080/00031305.2017.1375989)
+
+  Karl Broman & Kara Woo, 2018, *The American Statistician*, *72*(1).
+
+--
+
+- [**Installing R and RStudio**](https://rstudio-education.github.io/hopr/starting.html)
+
+  From the [**Hands on Programming with R**](https://rstudio-education.github.io/hopr/) book by Garrett Grolemund (@StatGarrett).
+  
+--
+
+- [**STAT 545: Data wrangling, exploration, and analysis with R**](https://stat545.com/)
+  
+  Open course materials produced by faculty at the University of British Columbia
+
+--
+
+- [**Chromebook Data Science**](https://jhudatascience.org/chromebookdatascience/)
+  
+  Open course materials produced by faculty at Johns Hopkins University
+  
+--
+
+- [**R for Data Science**](https://r4ds.had.co.nz/)
+  
+  Book written by Garrett Grolemund (@StatGarrett) & Hadley Wickham (@hadleywickham). Free online, hard copy available for purchase.
+
+---
+class: center, middle
+
+![](https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/tenor.gif)
+
+Slides: [**LINK HERE**]()
