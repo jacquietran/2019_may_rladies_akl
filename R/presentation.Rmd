@@ -19,13 +19,51 @@ options(htmltools.dir.version = FALSE, echo = TRUE)
 
 # Load libraries ---------------------------------------------------------------
 
+library(countdown)
 library(ghibli)
 library(xaringanthemer)
+library(here)
 
 ```
 
 ```{r xaringan_themer, include = FALSE}
 
+# Define custom css
+extra_css <- list(
+  ".title-slide" = list(
+    "background-image" = "url(https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/titlebg.jpg)",
+    "background-size" = "cover"),
+  ".button" = list(
+    display = "inline-block",
+    padding = "5px 10px",
+    "font-size" = "24px",
+    cursor = "pointer",
+    "text-align" = "center",
+    "text-decoration" = "none",
+    outline = "none",
+    color = "#fff",
+    "background-color" = "#ED5B67",
+    border = "none",
+    "border-radius" = "10px"),
+  ".button:hover" = list(
+    "background-color" = "#762D34"),
+  ".button_code" = list(
+    display = "inline-block",
+    padding = "5px 10px",
+    "font-size" = "24px",
+    cursor = "pointer",
+    "text-align" = "center",
+    "text-decoration" = "none",
+    outline = "none",
+    color = "#fff",
+    "background-color" = "#168B98",
+    border = "none",
+    "border-radius" = "10px"),
+  ".button_code:hover" = list(
+    "background-color" = "#0E464C")
+)
+
+# Define xaringan theme
 mono_light(
   base_color = ghibli_palette("YesterdayDark")[2],
   header_font_google = google_font("Fredericka the Great"),
@@ -40,7 +78,7 @@ mono_light(
   footnote_color = "#666666",
   footnote_font_size = "0.5em",
   footnote_position_bottom = "0.5em",
-  extra_css = list(".title-slide" = list("background-image" = "url(https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/titlebg.jpg)", "background-size" = "cover"))
+  extra_css = extra_css
 )
 
 ```
@@ -217,6 +255,30 @@ We need to (learn to) work accurately and efficiently with high-resolution data.
 </center>
 
 ---
+
+## A general workflow for sports analytics
+
+--
+
+Determine the need through collaboration
+
+--
+
+Articulate the need as a question
+
+--
+
+Scope out the 'minimum viable product'
+
+--
+
+Allow time for peer review
+
+--
+
+Communicate the findings in appropriate ways
+
+---
 class: inverse, center, middle
 
 # Uses of R in sports analytics
@@ -280,35 +342,79 @@ background-size: 85% 80%
 
 ## R packages used
 
-Project organisation: `here`
+Project organisation: <a href="https://github.com/jennybc/here_here" target="_blank"><button class="button">here</button></a>
 
-Retrieving text data: `gutenbergr`
+Retrieving text data: <a href="https://github.com/jennybc/here_here" target="_blank"><button class="button">gutenbergr</button></a>
 
-Tidying text data: `tidytext`, `dplyr`, `stringr`, `tidyr`
+Tidying text data: <a href="https://www.tidytextmining.com/" target="_blank"><button class="button">tidytext</button></a> <a href="https://dplyr.tidyverse.org/" target="_blank"><button class="button">dplyr</button></a> <a href="https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html" target="_blank"><button class="button">stringr</button></a> <a href="https://tidyr.tidyverse.org/" target="_blank"><button class="button">tidyr</button></a>
 
-Creating graph data (for network analysis): `igraph`
+Creating graph data (for network analysis): <a href="https://igraph.org/r/" target="_blank"><button class="button">igraph</button></a>
 
-Plotting: `ggplot2`, `ggraph`
+Plotting: <a href="https://ggplot2.tidyverse.org/" target="_blank"><button class="button">ggplot2</button></a> <a href="https://github.com/thomasp85/ggraph" target="_blank"><button class="button">ggraph</button></a>
+
+<br />
+
+*****
+
+Code: <a href="https://github.com/jacquietran/2019_may_rladies_akl/blob/master/R/example_text_mining.R" target="_blank"><button class="button_code">On GitHub</button></a>
 
 ---
 class: inverse, center, middle
 
 # Uses of R in sports analytics
 
-## Example 2: Network analysis in Australian football
+## Example 2: Team scoring dynamics
+
+---
+
+
+
+---
+
+## R packages used
 
 ---
 class: inverse, center, middle
 
 # Uses of R in sports analytics
 
-## Example 3: Scoring dynamics in Australian football
+## Example 3: Possession chains
 
 ---
+
+## R packages used
+
+---
+class: inverse, center, middle
+
+<br />
+<img src="https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/typing.gif" width="500px" />
+
+# Your turn!
+
+---
+
+## Find coding companions! [ 2 min ]
+
+`r emo::ji("dancing_women")` Small groups of **2-3 people**
+
+--
+
+`r emo::ji("wave")` Connect with **someone you don't know**, or...
+
+--
+
+`r emo::ji("hatching_chick")` Try for **varied R familiarity** in your group.
+
+--
+
+`r emo::ji("woman_technologist")` At least **1 laptop per group**, with R and RStudio installed
 
 ---
 
 ## Workshop materials
+
+---
 
 ``` {r workshop_setup, eval = FALSE}
 
@@ -322,90 +428,6 @@ use_course("/path_to_companion_materials")
 # https://usethis.r-lib.org/reference/use_course.html
 
 ```
-
----
-
-## A general workflow for sports analytics
-
-Determine the need through collaboration
-
---
-
-Articulate the need as a question
-
---
-
-Scope out the 'minimum viable product'
-
---
-
-Allow time for peer review
-
---
-
-Communicate the findings in appropriate ways
-
----
-class: inverse, center, middle
-
-# Coding with data
-
----
-
-## Excel: Its power and its pitfalls
-
---
-
-1. Data, analysis outputs, and visualisation are **stored in one file**.
-
---
-
-2. Data is **easily manipulated** - high risk of introducing errors.
-
---
-
-3. Point-and-click interface - **manual repetition!**
-
---
-
-4. **Actions are not logged** by default.
-
---
-
-5. **Slow** when working with large data sets or files storing many computations.
-
---
-
-6. Complicated **workbooks can 'break' when shared** with others.
-
----
-class: inverse, center, middle
-
-<img src="https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/excel_stopped_working.png" width = "700px" />
-
----
-
-## The case for coding
-
---
-
-1. **Separation** of data, analysis outputs, visualisations, and reports.
-
---
-
-2. **Reproducible**, transparent, and less error-prone workflow.
-
---
-
-3. Coding methods are **faster** than point-and-click as your **data gets bigger**, your **actions more repetitive**, and your **analyses more sophisticated**.
-
---
-
-4. Procedures are **documented** via scripts and command history.
-
---
-
-5. **Build your own library** of frequently used analytical procedures - or use and adapt libraries created by open source developers!
 
 ---
 class: inverse, center, middle

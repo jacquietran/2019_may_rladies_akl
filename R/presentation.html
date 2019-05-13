@@ -200,6 +200,30 @@ We need to (learn to) work accurately and efficiently with high-resolution data.
 &lt;/center&gt;
 
 ---
+
+## A general workflow for sports analytics
+
+--
+
+Determine the need through collaboration
+
+--
+
+Articulate the need as a question
+
+--
+
+Scope out the 'minimum viable product'
+
+--
+
+Allow time for peer review
+
+--
+
+Communicate the findings in appropriate ways
+
+---
 class: inverse, center, middle
 
 # Uses of R in sports analytics
@@ -263,35 +287,79 @@ background-size: 85% 80%
 
 ## R packages used
 
-Project organisation: `here`
+Project organisation: &lt;a href="https://github.com/jennybc/here_here" target="_blank"&gt;&lt;button class="button"&gt;here&lt;/button&gt;&lt;/a&gt;
 
-Retrieving text data: `gutenbergr`
+Retrieving text data: &lt;a href="https://github.com/jennybc/here_here" target="_blank"&gt;&lt;button class="button"&gt;gutenbergr&lt;/button&gt;&lt;/a&gt;
 
-Tidying text data: `tidytext`, `dplyr`, `stringr`, `tidyr`
+Tidying text data: &lt;a href="https://www.tidytextmining.com/" target="_blank"&gt;&lt;button class="button"&gt;tidytext&lt;/button&gt;&lt;/a&gt; &lt;a href="https://dplyr.tidyverse.org/" target="_blank"&gt;&lt;button class="button"&gt;dplyr&lt;/button&gt;&lt;/a&gt; &lt;a href="https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html" target="_blank"&gt;&lt;button class="button"&gt;stringr&lt;/button&gt;&lt;/a&gt; &lt;a href="https://tidyr.tidyverse.org/" target="_blank"&gt;&lt;button class="button"&gt;tidyr&lt;/button&gt;&lt;/a&gt;
 
-Creating graph data (for network analysis): `igraph`
+Creating graph data (for network analysis): &lt;a href="https://igraph.org/r/" target="_blank"&gt;&lt;button class="button"&gt;igraph&lt;/button&gt;&lt;/a&gt;
 
-Plotting: `ggplot2`, `ggraph`
+Plotting: &lt;a href="https://ggplot2.tidyverse.org/" target="_blank"&gt;&lt;button class="button"&gt;ggplot2&lt;/button&gt;&lt;/a&gt; &lt;a href="https://github.com/thomasp85/ggraph" target="_blank"&gt;&lt;button class="button"&gt;ggraph&lt;/button&gt;&lt;/a&gt;
+
+&lt;br /&gt;
+
+*****
+
+Code: &lt;a href="https://github.com/jacquietran/2019_may_rladies_akl/blob/master/R/example_text_mining.R" target="_blank"&gt;&lt;button class="button_code"&gt;On GitHub&lt;/button&gt;&lt;/a&gt;
 
 ---
 class: inverse, center, middle
 
 # Uses of R in sports analytics
 
-## Example 2: Network analysis in Australian football
+## Example 2: Team scoring dynamics
+
+---
+
+
+
+---
+
+## R packages used
 
 ---
 class: inverse, center, middle
 
 # Uses of R in sports analytics
 
-## Example 3: Scoring dynamics in Australian football
+## Example 3: Possession chains
 
 ---
+
+## R packages used
+
+---
+class: inverse, center, middle
+
+&lt;br /&gt;
+&lt;img src="https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/typing.gif" width="500px" /&gt;
+
+# Your turn!
+
+---
+
+## Find coding companions! [ 2 min ]
+
+👯 Small groups of **2-3 people**
+
+--
+
+👋 Connect with **someone you don't know**, or...
+
+--
+
+🐣 Try for **varied R familiarity** in your group.
+
+--
+
+👩‍💻 At least **1 laptop per group**, with R and RStudio installed
 
 ---
 
 ## Workshop materials
+
+---
 
 
 ```r
@@ -304,90 +372,6 @@ use_course("/path_to_companion_materials")
 # Ref for ME! DELETE before presenting
 # https://usethis.r-lib.org/reference/use_course.html
 ```
-
----
-
-## A general workflow for sports analytics
-
-Determine the need through collaboration
-
---
-
-Articulate the need as a question
-
---
-
-Scope out the 'minimum viable product'
-
---
-
-Allow time for peer review
-
---
-
-Communicate the findings in appropriate ways
-
----
-class: inverse, center, middle
-
-# Coding with data
-
----
-
-## Excel: Its power and its pitfalls
-
---
-
-1. Data, analysis outputs, and visualisation are **stored in one file**.
-
---
-
-2. Data is **easily manipulated** - high risk of introducing errors.
-
---
-
-3. Point-and-click interface - **manual repetition!**
-
---
-
-4. **Actions are not logged** by default.
-
---
-
-5. **Slow** when working with large data sets or files storing many computations.
-
---
-
-6. Complicated **workbooks can 'break' when shared** with others.
-
----
-class: inverse, center, middle
-
-&lt;img src="https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/excel_stopped_working.png" width = "700px" /&gt;
-
----
-
-## The case for coding
-
---
-
-1. **Separation** of data, analysis outputs, visualisations, and reports.
-
---
-
-2. **Reproducible**, transparent, and less error-prone workflow.
-
---
-
-3. Coding methods are **faster** than point-and-click as your **data gets bigger**, your **actions more repetitive**, and your **analyses more sophisticated**.
-
---
-
-4. Procedures are **documented** via scripts and command history.
-
---
-
-5. **Build your own library** of frequently used analytical procedures - or use and adapt libraries created by open source developers!
 
 ---
 class: inverse, center, middle
@@ -1112,10 +1096,8 @@ datatable(gold_medal_totals_wide,
 
 ## Display gold medal totals
 
-&lt;!iv id="htmlwidget-624e6c2272990d332854" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-624e6c2272990d332854">{"x":{"filter":"none","data":[[1998,2002,2006,2010,2014],["Nagano","Salt Lake City","Turin","Vancouver","Sochi"],[6,8,7,15,10],[10,12,2,9,12],[0,0,7,5,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Year<\/th>\n      <th>City<\/th>\n      <th>CAN<\/th>\n      <th>NOR<\/th>\n      <th>SWE<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-right","targets":[0,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!---
-
-## Plot the data
+&lt;!--htm="htmlwidget-ddb1129712814b9a7897" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ddb1129712814b9a7897">{"x":{"filter":"none","data":[[1998,2002,2006,2010,2014],["Nagano","Salt Lake City","Turin","Vancouver","Sochi"],[6,8,7,15,10],[10,12,2,9,12],[0,0,7,5,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Year<\/th>\n      <th>City<\/th>\n      <th>CAN<\/th>\n      <th>NOR<\/th>\n      <th>SWE<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-right","targets":[0,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/ht## Plot the data
 
 We can also plot the gold medal totals we've calculated, which will make it easier to draw visual comparisons between countries and over time.
 

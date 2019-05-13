@@ -180,3 +180,35 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
   background-image: url(https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/titlebg.jpg);
   background-size: cover;
 }
+.button {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #ED5B67;
+  border: none;
+  border-radius: 10px;
+}
+.button:hover {
+  background-color: #762D34;
+}
+.button_code {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #168B98;
+  border: none;
+  border-radius: 10px;
+}
+.button_code:hover {
+  background-color: #0E464C;
+}
