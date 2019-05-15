@@ -1,3 +1,3 @@
-# R-Ladies AKL: Sports analytics with R
+# R-Ladies AKL: Working with data in elite sport
 
-Materials for May 2019 workshop
+Presentation materials for May 2019 meetup.
