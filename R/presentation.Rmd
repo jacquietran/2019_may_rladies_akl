@@ -518,7 +518,7 @@ install.packages(packages)
 
 library(usethis)
 
-use_course("http://bit.ly/rladies_sport")
+use_course("https://bit.ly/rladies_sport")
 
 ```
 
