@@ -3,15 +3,6 @@
   <head>
     <title>Working with data in elite sport</title>
     <meta charset="utf-8" />
-    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
-    <script src="libs/jquery/jquery.min.js"></script>
-    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
-    <script src="libs/datatables-binding/datatables.js"></script>
-    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
-    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
-    <link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
-    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -311,12 +302,57 @@ class: inverse, center, middle
 ## Example 2: Team scoring dynamics
 
 ---
+class: center, middle
 
+![](https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/merritt_clauset.PNG)
 
+[**Merritt &amp; Clauset, 2014**](https://link.springer.com/article/10.1140/epjds29), *EPJ Data Science*
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/merritt_clauset_fig3.PNG)
+background-size: contain
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/afl_tables_home.PNG)
+background-size: cover
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/afl_tables_score_progression.PNG)
+background-size: contain
+
+---
+class: center, middle
+
+![](https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/tran_letter_header.PNG)
+
+&lt;a href="https://www.jsams.org/article/S1440-2440(17)31300-2/abstract" target="_blank"&gt;**Tran &amp; Letter, 2017**&lt;/a&gt;, *J Sci Med Sport*
+
+---
+class: center, middle
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/tran_letter_1.png)
+background-size: contain
+
+---
+class: center, middle
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/tran_letter_2.png)
+background-size: contain
+
+---
+class: center, middle
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/tran_letter_3.png)
+background-size: contain
 
 ---
 
 ## R packages used
+
+Scraping webpage data: &lt;a href="https://blog.rstudio.com/2014/11/24/rvest-easy-web-scraping-with-r/" target="_blank"&gt;&lt;button class="button"&gt;rvest&lt;/button&gt;&lt;/a&gt;
+
+Tidying data: &lt;a href="https://purrr.tidyverse.org/" target="_blank"&gt;&lt;button class="button"&gt;purrr&lt;/button&gt;&lt;/a&gt; &lt;a href="https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html" target="_blank"&gt;&lt;button class="button"&gt;stringr&lt;/button&gt;&lt;/a&gt; &lt;a href="http://had.co.nz/plyr/" target="_blank"&gt;&lt;button class="button"&gt;plyr&lt;/button&gt;&lt;/a&gt; &lt;a href="https://dplyr.tidyverse.org/" target="_blank"&gt;&lt;button class="button"&gt;dplyr&lt;/button&gt;&lt;/a&gt; &lt;a href="https://lubridate.tidyverse.org/" target="_blank"&gt;&lt;button class="button"&gt;lubridate&lt;/button&gt;&lt;/a&gt; &lt;a href="https://seananderson.ca/2013/10/19/reshape/" target="_blank"&gt;&lt;button class="button"&gt;reshape2&lt;/button&gt;&lt;/a&gt;
+
+Time series analysis: &lt;a href="https://github.com/joshuaulrich/TTR" target="_blank"&gt;&lt;button class="button"&gt;TTR&lt;/button&gt;&lt;/a&gt; &lt;a href="http://members.cbio.mines-paristech.fr/~thocking/change-tutorial/RK-CptWorkshop.html" target="_blank"&gt;&lt;button class="button"&gt;changepoint&lt;/button&gt;&lt;/a&gt;
+
+Plotting: &lt;a href="https://ggplot2.tidyverse.org/" target="_blank"&gt;&lt;button class="button"&gt;ggplot2&lt;/button&gt;&lt;/a&gt;
 
 ---
 class: inverse, center, middle
@@ -326,8 +362,42 @@ class: inverse, center, middle
 ## Example 3: Possession chains
 
 ---
+class: center, middle
+
+![](https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/di_domenico_soccer.PNG)
+
+---
+class: center, middle
+
+&lt;iframe width="900" height="540" src="https://www.youtube.com/embed/P7kk820tAvw?start=317" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/di_domenico_rationale.png)
+background-size: contain
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/di_domenico_header.png)
+background-size: contain
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/di_domenico_results_d50.png)
+background-size: 80% 90%
+
+---
+background-image: url(https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/di_domenico_results_turnovers.png)
+background-size: 70% 90%
+
+---
 
 ## R packages used
+
+Importing data: &lt;a href="https://readr.tidyverse.org/" target="_blank"&gt;&lt;button class="button"&gt;readr&lt;/button&gt;&lt;/a&gt;
+
+Tidying data: &lt;a href="http://had.co.nz/plyr/" target="_blank"&gt;&lt;button class="button"&gt;plyr&lt;/button&gt;&lt;/a&gt;
+
+Decision tree analysis: &lt;a href="https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf" target="_blank"&gt;&lt;button class="button"&gt;rpart&lt;/button&gt;&lt;/a&gt; &lt;a href="https://cran.r-project.org/web/packages/rattle/vignettes/rattle.pdf" target="_blank"&gt;&lt;button class="button"&gt;rattle&lt;/button&gt;&lt;/a&gt;
+
+Plotting: &lt;a href="https://ggplot2.tidyverse.org/" target="_blank"&gt;&lt;button class="button"&gt;ggplot2&lt;/button&gt;&lt;/a&gt; &lt;a href="" target="_blank"&gt;&lt;button class="button"&gt;rpart.plot&lt;/button&gt;&lt;/a&gt; &lt;a href="" target="_blank"&gt;&lt;button class="button"&gt;RColorBrewer&lt;/button&gt;&lt;/a&gt;
 
 ---
 class: inverse, center, middle
@@ -357,39 +427,48 @@ class: inverse, center, middle
 
 ---
 
-## Workshop materials
+## Set up [ 5 min ]
 
----
+You'll need these R packages installed and up-to-date for the workshop:
 
 
 ```r
-# If you don't already have the {usethis} package:
-install.packages("usethis")
+packages &lt;- c(
+    'readr',
+    'dplyr', 
+    'tidyr', 
+    'ggplot2',
+    'here',
+    'usethis'
+)
 
-# Once installed:
-use_course("/path_to_companion_materials")
-
-# Ref for ME! DELETE before presenting
-# https://usethis.r-lib.org/reference/use_course.html
+install.packages(packages)
 ```
 
 ---
-class: inverse, center, middle
 
-# A tidy workflow
+## Workshop materials
+
+
+```r
+library(usethis)
+
+use_course("http://bit.ly/rladies_sport")
+```
+
+--
+
+![](https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/usethis_1.PNG)
 
 ---
 class: center, middle
 
-![](https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/tidy_workflow.png)
-
-Grolemund &amp; Wickham, 2017, **[R for Data Science](https://r4ds.had.co.nz/)**
+![](https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/usethis_2.PNG)
 
 ---
-class: inverse, center, middle
+class: center, middle
 
-# Worked example with sports data
-## Winter Olympics medallists 1924–2014
+![](https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/usethis_files.PNG)
 
 ---
 
@@ -397,7 +476,7 @@ class: inverse, center, middle
 This example uses a publicly available data set that includes **all podium results from the Winter Olympic Games from 1924 to 2014, inclusive**.
 
 &lt;center&gt;
-&lt;img src="https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/ChloeKim.jpg" width="600px" /&gt;
+&lt;img src="https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/ChloeKim.jpg" width="600px" /&gt;
 &lt;/center&gt;
 
 --
@@ -406,30 +485,22 @@ The `winter` data set is downloadable from this link:
 **[https://www.kaggle.com/the-guardian/olympic-games/data](https://www.kaggle.com/the-guardian/olympic-games/data)**
 
 ---
-class: inverse, center, middle
 
-# 'Start with the end in mind.'
+## To help you get started...
 
----
-class: center, middle
+In RStudio, use the file explorer to navigate your `rladies_akl_sport` project folder.
 
-## **How many gold medals** were won by
-## **Canada, Norway, and Sweden** at the
-## **last five Winter Olympic Games**, up to 2014?
+&lt;center&gt;
+&lt;img src="https://raw.githubusercontent.com/jacquietran/2019_may_rladies_akl/master/images/usethis_files.PNG" /&gt;
+&lt;/center&gt;
 
 ---
 
-&lt;br /&gt;
-To answer this question, we will use R to create this **data table**...
+## To help you get started...
 
-![](https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/demo1_data_table.PNG)
+Click on the `R` folder.
 
----
-
-&lt;br /&gt;
-...and this **data plot**!
-
-![](https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/demo1_data_plot.png)
+Click on the `starter_script.R` file.
 
 ---
 
@@ -439,8 +510,46 @@ To answer this question, we will use R to create this **data table**...
 ```r
 # The {here} package helps point to a PROJECT-specific file directory,
 # rather than a location specific to YOUR personal computer, like:
-# C:\Users\Jacquie\Documents
+# C:\Users\YourName\Documents
+library(here)
+
+# The {readr} package is efficient for reading (importing) CSVs
+library(readr)
+
+# Import the data into your R session
+winter &lt;- read_csv(
+  here("data/winter.csv"), col_names = TRUE, col_types = NULL)
+```
+
+---
+
+## Import the data
+
+
+```r
+# The {here} package helps point to a PROJECT-specific file directory,
+# rather than a location specific to YOUR personal computer, like:
+# C:\Users\YourName\Documents
 *library(here)
+
+# The {readr} package is efficient for reading (importing) CSVs
+library(readr)
+
+# Import the data into your R session
+winter &lt;- read_csv(
+  here("data/winter.csv"), col_names = TRUE, col_types = NULL)
+```
+
+---
+
+## Import the data
+
+
+```r
+# The {here} package helps point to a PROJECT-specific file directory,
+# rather than a location specific to YOUR personal computer, like:
+# C:\Users\YourName\Documents
+library(here)
 
 # The {readr} package is efficient for reading (importing) CSVs
 *library(readr)
@@ -458,7 +567,7 @@ winter &lt;- read_csv(
 ```r
 # The {here} package helps point to a PROJECT-specific file directory,
 # rather than a location specific to YOUR personal computer, like:
-# C:\Users\Jacquie\Documents
+# C:\Users\YourName\Documents
 library(here)
 
 # The {readr} package is efficient for reading (importing) CSVs
@@ -471,33 +580,48 @@ library(readr)
 
 ---
 
-## Check the data
+## Check the data [ 5 min ]
 
 
 ```r
+# Try each of these commands, one-by-one:
 head(winter)
+
+str(winter)
+
+dplyr::glimpse(winter)
+
+View(winter)
 ```
 
---
+&lt;center&gt;
+What do you notice? Which commands do prefer and why?
+&lt;/center&gt;
 
+---
+class: inverse, center, middle
 
-```
-## # A tibble: 6 x 9
-##    Year City   Sport  Discipline Athlete      Country Gender Event    Medal
-##   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;
-## 1  1924 Chamo~ Biath~ Biathlon   BERTHET, G.  FRA     Men    Militar~ Bron~
-## 2  1924 Chamo~ Biath~ Biathlon   MANDRILLON,~ FRA     Men    Militar~ Bron~
-## 3  1924 Chamo~ Biath~ Biathlon   MANDRILLON,~ FRA     Men    Militar~ Bron~
-## 4  1924 Chamo~ Biath~ Biathlon   VANDELLE, A~ FRA     Men    Militar~ Bron~
-## 5  1924 Chamo~ Biath~ Biathlon   AUFDENBLATT~ SUI     Men    Militar~ Gold 
-## 6  1924 Chamo~ Biath~ Biathlon   JULEN, Alph~ SUI     Men    Militar~ Gold
-```
+# 'Start with the end in mind.'
+
+---
+class: center, middle
+
+## **How many gold medals** were won by
+## **Canada, Norway, and Sweden** at the
+## **last five Winter Olympic Games**, up to 2014?
+
+---
+
+&lt;br /&gt;
+To answer this question, we will use R to create this plot:
+
+![](https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/demo1_data_plot.png)
 
 ---
 
 ## Subset the data
 
-Remember our motivating question: **How many gold medals** were won by **Canada, Norway, and Sweden** at the **last five Winter Olympic Games**, up to 2014?
+The motivating question: **How many gold medals** were won by **Canada, Norway, and Sweden** at the **last five Winter Olympic Games**, up to 2014?
 
 --
 
@@ -563,7 +687,21 @@ gold_medal_comparison &lt;- winter %&gt;%
 
 ---
 
-## Check the data
+## Check the data [ 2 min ]
+
+
+```r
+head(gold_medal_comparison,
+*    n = 9)
+```
+
+--
+
+&lt;center&gt;How would you describe the information contained in &lt;b&gt;any one row&lt;/b&gt;?&lt;/center&gt;
+
+---
+
+## Check the data [ 2 min ]
 
 
 ```r
@@ -612,14 +750,11 @@ For this analysis, we need to wrangle the data to get it into a format where **o
 
 
 ```r
-*gold_medal_comparison$unique_event_ID &lt;-
-  paste(gold_medal_comparison$Year,
-        gold_medal_comparison$Sport,
-        gold_medal_comparison$Discipline,
-        gold_medal_comparison$Country,
-        gold_medal_comparison$Gender,
-        gold_medal_comparison$Event,
-        sep = "_")
+*gold_medal_comparison &lt;- gold_medal_comparison %&gt;%
+  mutate(
+    unique_event_ID =
+      paste(Year, Sport, Discipline, Country, Gender, Event, sep = "_")
+    )
 ```
 
 ---
@@ -628,14 +763,50 @@ For this analysis, we need to wrangle the data to get it into a format where **o
 
 
 ```r
-gold_medal_comparison$unique_event_ID &lt;-
-* paste(gold_medal_comparison$Year,
-*       gold_medal_comparison$Sport,
-*       gold_medal_comparison$Discipline,
-*       gold_medal_comparison$Country,
-*       gold_medal_comparison$Gender,
-*       gold_medal_comparison$Event,
-*       sep = "_")
+gold_medal_comparison &lt;- gold_medal_comparison %&gt;%
+* mutate(
+    unique_event_ID =
+      paste(Year, Sport, Discipline, Country, Gender, Event, sep = "_")
+    )
+```
+
+---
+
+## Create a new 'identifier' variable
+
+
+```r
+gold_medal_comparison &lt;- gold_medal_comparison %&gt;%
+  mutate(
+*   unique_event_ID =
+      paste(Year, Sport, Discipline, Country, Gender, Event, sep = "_")
+    )
+```
+
+---
+
+## Create a new 'identifier' variable
+
+
+```r
+gold_medal_comparison &lt;- gold_medal_comparison %&gt;%
+  mutate(
+    unique_event_ID =
+*     paste(Year, Sport, Discipline, Country, Gender, Event, sep = "_")
+    )
+```
+
+---
+
+## Create a new 'identifier' variable
+
+
+```r
+gold_medal_comparison &lt;- gold_medal_comparison %&gt;%
+  mutate(
+    unique_event_ID =
+      paste(Year, Sport, Discipline, Country, Gender, Event, sep = "_")
+*   )
 ```
 
 ---
@@ -648,7 +819,17 @@ gold_medal_comparison %&gt;%
 * select(unique_event_ID)
 ```
 
---
+What do you notice?
+
+---
+
+## Check the new variable
+
+
+```r
+gold_medal_comparison %&gt;%
+* select(unique_event_ID)
+```
 
 
 ```
@@ -808,6 +989,18 @@ gold_medal_comparison &lt;- gold_medal_comparison %&gt;%
 gold_medal_comparison &lt;- gold_medal_comparison %&gt;%
   mutate(duplicates = duplicated(unique_event_ID)) %&gt;%
 * filter(duplicates == FALSE) %&gt;%
+  select(Year, City, Sport, Country, Event, Medal)
+```
+
+---
+
+## Omit rows with duplicate IDs
+
+
+```r
+gold_medal_comparison &lt;- gold_medal_comparison %&gt;%
+  mutate(duplicates = duplicated(unique_event_ID)) %&gt;%
+  filter(duplicates == FALSE) %&gt;%
 * select(Year, City, Sport, Country, Event, Medal)
 ```
 
@@ -966,162 +1159,13 @@ gold_medal_totals
 
 ---
 
-## Reshape gold medal totals
-
-We can reshape the data from long to wide format, to make it more **human-readable** when we display the gold medal totals in a table.
-
-
-```r
-# The {tidyr} package helps to convert between
-# long and wide data formats
-*library(tidyr)
-
-# Spread the data from long to wide format for tabulating
-gold_medal_totals_wide &lt;- gold_medal_totals %&gt;%
-  spread(key = Country, value = gold_medal_total)
-```
-
----
-
-## Reshape gold medal totals
-
-We can reshape the data from long to wide format, to make it more **human-readable** when we display the gold medal totals in a table.
-
-
-```r
-# The {tidyr} package helps to convert between
-# long and wide data formats
-library(tidyr)
-
-# Spread the data from long to wide format for tabulating
-*gold_medal_totals_wide &lt;- gold_medal_totals %&gt;%
-  spread(key = Country, value = gold_medal_total)
-```
-
----
-
-## Reshape gold medal totals
-
-We can reshape the data from long to wide format, to make it more **human-readable** when we display the gold medal totals in a table.
-
-
-```r
-# The {tidyr} package helps to convert between
-# long and wide data formats
-library(tidyr)
-
-# Spread the data from long to wide format for tabulating
-gold_medal_totals_wide &lt;- gold_medal_totals %&gt;%
-* spread(key = Country, value = gold_medal_total)
-```
-
----
-
-## Reshape gold medal totals
-
-
-```r
-# Check the reshaped data
-gold_medal_totals_wide
-```
-
-```
-## # A tibble: 5 x 5
-##    Year City             CAN   NOR   SWE
-##   &lt;dbl&gt; &lt;chr&gt;          &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1  1998 Nagano             6    10    NA
-## 2  2002 Salt Lake City     8    12    NA
-## 3  2006 Turin              7     2     7
-## 4  2010 Vancouver         15     9     5
-## 5  2014 Sochi             10    12     2
-```
-
---
-
-
-```r
-# NAs appear because SWE did not win any gold medals
-# at the 1998 and 2002 Winter Games
-
-# Replace NAs with zeroes
-*gold_medal_totals_wide[is.na(gold_medal_totals_wide)] &lt;- 0
-```
-
----
-
-## Display gold medal totals
-
-
-```r
-# The {DT} package is used to display interactive tables in HTML documents
-*library(DT)
-
-# Display the totals in a table, with nicer column names
-datatable(gold_medal_totals_wide,
-          rownames = FALSE,
-          options = list(dom = "t"))
-```
-
----
-
-## Display gold medal totals
-
-
-```r
-# The {DT} package is used to display interactive tables in HTML documents
-library(DT)
-
-# Display the totals in a table, with nicer column names
-*datatable(gold_medal_totals_wide,
-          rownames = FALSE,
-          options = list(dom = "t"))
-```
-
----
-
-## Display gold medal totals
-
-
-```r
-# The {DT} package is used to display interactive tables in HTML documents
-library(DT)
-
-# Display the totals in a table, with nicer column names
-datatable(gold_medal_totals_wide,
-*         rownames = FALSE,
-*         options = list(dom = "t"))
-```
-
----
-
-## Display gold medal totals
-
-&lt;!--htm="htmlwidget-ddb1129712814b9a7897" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ddb1129712814b9a7897">{"x":{"filter":"none","data":[[1998,2002,2006,2010,2014],["Nagano","Salt Lake City","Turin","Vancouver","Sochi"],[6,8,7,15,10],[10,12,2,9,12],[0,0,7,5,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Year<\/th>\n      <th>City<\/th>\n      <th>CAN<\/th>\n      <th>NOR<\/th>\n      <th>SWE<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-right","targets":[0,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/ht## Plot the data
-
-We can also plot the gold medal totals we've calculated, which will make it easier to draw visual comparisons between countries and over time.
-
---
-
-Remember our motivating question: **How many gold medals** were won by **Canada, Norway, and Sweden** at the **last five Winter Olympic Games**, up to 2014?
-
----
-
-&lt;br /&gt;
-...we can use the table of gold medal totals to produce **this plot**, using a popular R package called `ggplot2`:
+We can use the gold medal totals to produce **this plot**, using a popular R package called `ggplot2`:
 
 ![](https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/demo1_data_plot.png)
 
 ---
 
 ## gg = Grammar of Graphics
-
-
-```r
-# The {ggplot2} package is a powerful, feature-rich
-# R package for creating data visualisations
-library(ggplot2)
-```
 
 `ggplot2` draws upon a **layered Grammar of Graphics** as a theoretical foundation for how to make plots (Wilkinson et al., 2005; Wickham, 2010).
 
@@ -1144,6 +1188,58 @@ class: center, middle
 &lt;img src="https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/gg_fig2.PNG" width="717px" /&gt;
 
 Wickham, 2010, **['A layered grammar of graphics'](https://vita.had.co.nz/papers/layered-grammar.html)**
+
+---
+
+## Start afresh!
+
+From RStudio's top navigation bar,
+
+- Go to the **Session** menu
+- Click **Clear Workspace**
+- Open the **Session** menu again
+- Click **Restart R**.
+
+---
+
+## Another helper script!
+
+In RStudio, use your file explorer to find and open the `plot_helper.R` script.
+
+---
+
+## Load packages
+
+
+```r
+# The {ggplot2} package is a powerful, feature-rich
+# R package for creating data visualisations
+library(ggplot2)
+```
+
+---
+
+## Import the wrangled data
+
+
+```r
+# Use this code to import the wrangled data set
+# that's ready for you to plot!
+gold_medal_totals &lt;- readRDS(here("data/gold_medal_totals.rds"))
+```
+
+---
+
+## Plot the data
+
+
+```r
+# Start building the plot, layer-by-layer
+p &lt;- ggplot(data = gold_medal_totals,
+            aes(x = Year, y = gold_medal_total,
+                fill = Country))
+p &lt;- p + geom_bar(stat = "identity")
+```
 
 ---
 
@@ -1211,7 +1307,7 @@ class: center, middle
 
 ![](presentation_files/figure-html/demo1_display_plot_1b-1.png)&lt;!-- --&gt;
 
-It's a start, but...
+It's a start, but...how could we improve this plot?
 
 ---
 
@@ -1245,6 +1341,8 @@ To the previous code chunk we started as the base for this plot, we **add layers
 ```r
 p &lt;- p + facet_wrap(~Country, nrow = 1)
 ```
+
+Then we **select the whole ggplot code chunk** (i.e., all layers) and run the code to re-build the plot.
 
 ---
 class: center, middle
@@ -1505,11 +1603,11 @@ class: inverse, center, middle
   Book written by Garrett Grolemund (@StatGarrett) &amp; Hadley Wickham (@hadleywickham). Free online, hard copy available for purchase.
 
 ---
-class: center, middle
+class: inverse, center, middle
 
-![](https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/tenor.gif)
-
-Slides: [**LINK HERE**]()
+&lt;center&gt;
+&lt;img src="https://raw.githubusercontent.com/jacquietran/2019_essa_forum/master/images/tenor.gif" width="600px" /&gt;
+&lt;/center&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
